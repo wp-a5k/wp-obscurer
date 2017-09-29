@@ -42,4 +42,4 @@ function auto_clean_meta_generators()
 }
 
 add_action('get_header', 'auto_clean_meta_generators', 9);
-add_action('wp_head', function(){ if(ob_get_level()) ob_end_flush(); }, 200);
+add_action('wp_head', function(){ if(ob_get_level()) ob_end_flush(); }, 999);
