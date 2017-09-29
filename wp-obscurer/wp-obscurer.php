@@ -23,13 +23,17 @@ if(!defined('ABSPATH')) require_once './404.php';
 remove_action('wp_head', 'wp_generator', 200);
 remove_action('wp_head', 'woo_version', 200);
 add_filter('the_generator', '__return_empty_string');
+add_filter('revslider_meta_generator', '__return_empty_string');
 
 
 /* Auto-clean meta generators */
 
 function remove_meta_generators($html)
 {
-	return preg_replace('/<meta\s+name\s*=\s*"generator"\s+content\s*=\s*"Powered by.+>\n?/i', '', $html);
+	$patterns = array('/<meta +name *= *"generator" +content *= *"Powered by .+>\n?/i');
+	if(defined('WPSEO_VERSION'))
+		$patterns[] = '/\<\!\-\- .*Yoast SEO.* \-\-\>\n?/i';
+	return preg_replace($patterns, "", $html);
 }
 
 function auto_clean_meta_generators()
