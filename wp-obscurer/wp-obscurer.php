@@ -7,7 +7,7 @@
 
 /**
  * Plugin Name: WP Obscurer
- * Plugin URI:  http://ale5000.altervista.org/
+ * Plugin URI:  https://github.com/wp-a5k/wp-obscurer
  * Description: The latest security hardening plug-in of this month ;)
  * Version:     0.0.0.1
  * Author:      ale5000
