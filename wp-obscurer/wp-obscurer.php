@@ -20,6 +20,8 @@
 // Exit if accessed directly
 if(!defined('ABSPATH')) require_once './404.php';
 
+$last_action = 10000;
+
 remove_action('wp_head', 'wp_generator', 200);
 remove_action('wp_head', 'woo_version', 200);
 add_filter('the_generator', '__return_empty_string');
@@ -30,7 +32,7 @@ add_filter('revslider_meta_generator', '__return_empty_string');
 
 function remove_meta_generators($html)
 {
-	$patterns = array('/<meta +name *= *"generator" +content *= *"Powered by .+>\n?/i');
+	$patterns = array('/<meta +name *= *"generator" +content *= *"Powered by .+>\r?\n?/i');
 	if(defined('WPSEO_VERSION'))
 		$patterns[] = '/\<\!\-\- .*Yoast SEO.* \-\-\>\n?/i';
 	return preg_replace($patterns, "", $html);
@@ -42,4 +44,4 @@ function auto_clean_meta_generators()
 }
 
 add_action('get_header', 'auto_clean_meta_generators', 9);
-add_action('wp_head', function(){ if(ob_get_level()) ob_end_flush(); }, 999);
+add_action('wp_head', function(){ if(ob_get_level()) ob_end_flush(); }, $last_action);
