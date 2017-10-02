@@ -24,7 +24,7 @@ $last_action = 10000;
 
 remove_action('wp_head', 'wp_generator', 200);
 remove_action('wp_head', 'woo_version', 200);
-add_filter('the_generator', '__return_empty_string');
+add_filter('the_generator', '__return_null', 10, 0);
 add_filter('revslider_meta_generator', '__return_empty_string');
 
 
