@@ -34,7 +34,7 @@ function remove_meta_generators($html)
 {
 	$patterns = array('/<meta +name *= *"generator" +content *= *"Powered by .+>\r?\n?/i');
 	if(defined('WPSEO_VERSION'))
-		$patterns[] = '/\<\!\-\- .*Yoast SEO.* \-\-\>\n?/i';
+		$patterns[] = '/\<\!\-\- .*Yoast SEO.* \-\-\>\r?\n?/i';
 	return preg_replace($patterns, "", $html);
 }
 
